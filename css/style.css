@@ -1,53 +1,131 @@
 :root {
-    --color-blue: #447fff;
-    --color-blue-fade: rgba(68, 127, 255, 0.1);
-    --color-white: #f9f9f9;
-    --color-cloud: #eaeaea;
+  --color-blue: #447fff;
+  --color-blue-fade: rgba(68, 127, 255, 0.1);
+  --color-white: #f9f9f9;
+  --color-cloud: #eaeaea;
+}
+
+/* Основной блок аккордеона */
+.accordion {
+  background: var(--color-white);
+  box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 600px) {
+  .accordion {
+    max-width: 600px;
+  }
+}
+
+/* Блок вкладок (tabs) */
+.accordion-tabs {
+  display: none;
+}
+
+.accordion-tabs:focus {
+  outline: none;
+}
+
+@media (min-width: 600px) {
+  .accordion-tabs {
+    display: flex;
+    background: var(--color-blue-fade);
   }
 
-  /* Основной блок аккордеона */
-  .accordion {
+  .accordion-tab {
+    background: var(--color-blue-fade);
+    padding: 1rem 2rem;
+    flex: 1;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+  }
+
+  .accordion-tab:hover {
+    background: rgba(249, 249, 249, 0.01);
+  }
+
+  .accordion-tab.accordion-active {
     background: var(--color-white);
-    box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 400px;
   }
-  
-  @media (min-width: 600px) {
-    .accordion {
-      max-width: 600px;
-    }
-  }
-  
-  /* Блок вкладок (tabs) */
-  .accordion-tabs {
-    display: none;
-  }
-  
-  @media (min-width: 600px) {
-    .accordion-tabs {
-      display: flex;
-      background: var(--color-blue-fade);
-    }
-  
-    .accordion-tab {
-      background: var(--color-blue-fade);
-      padding: 1rem 2rem;
-      flex: 1;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.1s ease;
-    }
-  
-    .accordion-tab:hover {
-      background: rgba(249, 249, 249, 0.01);
-    }
-  
-    .accordion-tab.accordion-active {
-      background: var(--color-white);
-    }
-  }
-  
-  
+}
+
+/* Элементы аккордеона (контент) */
+.accordion-item {
+  border-bottom: 1px solid var(--color-cloud);
+}
+
+.accordion-item:last-child {
+  border: none;
+}
+
+.accordion-item__label {
+  margin: 0;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: padding 0.2s ease;
+  position: relative;
+}
+
+.accordion-item__label:after {
+  content: "";
+  height: 4px;
+  width: 4px;
+  position: absolute;
+  right: 1.25rem;
+  border: 3px solid transparent;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  border-color: transparent var(--color-blue) var(--color-blue) transparent;
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
+.accordion-item__label:hover {
+  background: #d1e0ff;
+}
+
+.accordion-item__container {
+  padding: 0 1.25em;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: padding 0.2s ease, opacity 0.5s 0.15s ease;
+}
+
+/* Активные элементы */
+.accordion-active {
+  background: var(--color-blue-fade);
+}
+
+.accordion-active .accordion-item__label {
+  padding-bottom: 0;
+  cursor: default;
+}
+
+.accordion-active .accordion-item__label:hover {
+  background: none;
+}
+
+.accordion-active .accordion-item__label:after {
+  opacity: 0;
+}
+
+.accordion-active .accordion-item__container {
+  padding: 1.25em;
+  height: auto;
+  opacity: 1;
+}
+
+.accordion-active .accordion-item__container p:first-child {
+  margin-top: 0;
+}
+
+.accordion-active .accordion-item__container p:last-child {
+  margin-bottom: 0;
+}
+
