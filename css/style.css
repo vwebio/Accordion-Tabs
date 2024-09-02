@@ -1,0 +1,53 @@
+:root {
+    --color-blue: #447fff;
+    --color-blue-fade: rgba(68, 127, 255, 0.1);
+    --color-white: #f9f9f9;
+    --color-cloud: #eaeaea;
+  }
+
+  /* Основной блок аккордеона */
+  .accordion {
+    background: var(--color-white);
+    box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  @media (min-width: 600px) {
+    .accordion {
+      max-width: 600px;
+    }
+  }
+  
+  /* Блок вкладок (tabs) */
+  .accordion-tabs {
+    display: none;
+  }
+  
+  @media (min-width: 600px) {
+    .accordion-tabs {
+      display: flex;
+      background: var(--color-blue-fade);
+    }
+  
+    .accordion-tab {
+      background: var(--color-blue-fade);
+      padding: 1rem 2rem;
+      flex: 1;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.1s ease;
+    }
+  
+    .accordion-tab:hover {
+      background: rgba(249, 249, 249, 0.01);
+    }
+  
+    .accordion-tab.accordion-active {
+      background: var(--color-white);
+    }
+  }
+  
+  
